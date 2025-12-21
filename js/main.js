@@ -55,3 +55,53 @@ if (cursor) {
     cursor.style.display = "block";
   });
 }
+
+/* =========================
+   FULLSCREEN PREVIEW
+========================= */
+
+const tiles = document.querySelectorAll(".tile");
+
+tiles.forEach(tile => {
+  tile.addEventListener("click", () => {
+    const isVideo = tile.dataset.type === "video";
+    const src = isVideo
+      ? tile.querySelector("video").src
+      : tile.querySelector("img").src;
+
+    const overlay = document.createElement("div");
+    overlay.className = "preview-overlay";
+
+    overlay.innerHTML = isVideo
+      ? `<video src="${src}" controls autoplay></video>`
+      : `<img src="${src}" />`;
+
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", () => {
+      overlay.remove();
+    });
+  });
+});
+/* FORCE AUTOPLAY FOR MASONRY VIDEOS */
+document.querySelectorAll(".tile video").forEach(video => {
+  video.play().catch(() => {});
+});
+/* =========================
+   STACK CARD SCROLL ANIMATION
+========================= */
+const stackCards = document.querySelectorAll('.stack-card');
+
+const revealStack = () => {
+  const windowBottom = window.innerHeight + window.scrollY;
+
+  stackCards.forEach(card => {
+    const cardTop = card.offsetTop + card.offsetHeight / 4;
+    if (windowBottom > cardTop) {
+      card.classList.add('visible');
+    }
+  });
+};
+
+window.addEventListener('scroll', revealStack);
+window.addEventListener('load', revealStack);
