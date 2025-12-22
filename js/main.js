@@ -1,39 +1,68 @@
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+
 /* =========================
-   NAVIGATION (DOUBLE CLICK)
+   NAVIGATION (DESKTOP + MOBILE)
 ========================= */
 document.querySelectorAll(".draggable").forEach(icon => {
+
+  // Desktop: double click
   icon.addEventListener("dblclick", () => {
-    const link = icon.dataset.link;
-    if (link) window.location.href = link;
+    if (!isMobile) openIcon(icon);
   });
+
+  // Mobile: single tap
+  icon.addEventListener("touchend", (e) => {
+    if (isMobile) {
+      e.preventDefault();
+      openIcon(icon);
+    }
+  });
+
 });
+
+function openIcon(icon) {
+  const link = icon.dataset.link;
+  if (!link) return;
+
+  icon.style.transform = "scale(0.92)";
+  setTimeout(() => {
+    window.location.href = link;
+  }, 120);
+}
+
 
 /* =========================
    DRAG LOGIC
 ========================= */
-let active = null;
-let offsetX = 0;
-let offsetY = 0;
+if (!isMobile) {
 
-document.addEventListener("mousedown", e => {
-  const target = e.target.closest(".draggable");
-  if (!target) return;
+  let active = null;
+  let offsetX = 0;
+  let offsetY = 0;
 
-  active = target;
-  offsetX = e.clientX - active.offsetLeft;
-  offsetY = e.clientY - active.offsetTop;
-});
+  document.addEventListener("mousedown", e => {
+    const target = e.target.closest(".draggable");
+    if (!target) return;
 
-document.addEventListener("mousemove", e => {
-  if (!active) return;
+    active = target;
+    offsetX = e.clientX - active.offsetLeft;
+    offsetY = e.clientY - active.offsetTop;
+  });
 
-  active.style.left = `${e.clientX - offsetX}px`;
-  active.style.top = `${e.clientY - offsetY}px`;
-});
+  document.addEventListener("mousemove", e => {
+    if (!active) return;
 
-document.addEventListener("mouseup", () => {
-  active = null;
-});
+    active.style.left = `${e.clientX - offsetX}px`;
+    active.style.top = `${e.clientY - offsetY}px`;
+  });
+
+  document.addEventListener("mouseup", () => {
+    active = null;
+  });
+
+}
+
 
 /* =========================
    CUSTOM CURSOR (FIXED)

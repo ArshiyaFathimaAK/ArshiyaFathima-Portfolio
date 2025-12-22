@@ -1038,6 +1038,30 @@ h1.coding-heading {
   margin-top: 4px;
 }
 
+@media (max-width: 768px) {
+  .cursor {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .icon {
+    width: 90px;
+    text-align: center;
+  }
+
+  .icon img {
+    width: 64px;
+  }
+
+  .icon p {
+    font-size: 0.85rem;
+  }
+}
+@media (max-width: 768px) {
+  .hint {
+    content: "👆 Tap icons to open";
+  }
+}
 
 
 
