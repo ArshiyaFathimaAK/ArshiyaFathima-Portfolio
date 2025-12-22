@@ -105,3 +105,56 @@ const revealStack = () => {
 
 window.addEventListener('scroll', revealStack);
 window.addEventListener('load', revealStack);
+
+/* =========================
+   MAGNETIC TECH STACK
+========================= */
+
+document.querySelectorAll(".orbit.magnetic").forEach(orbit => {
+
+  orbit.addEventListener("mousemove", e => {
+    orbit.querySelectorAll("span").forEach(tag => {
+      const rect = tag.getBoundingClientRect();
+
+      const tagX = rect.left + rect.width / 2;
+      const tagY = rect.top + rect.height / 2;
+
+      const dx = (e.clientX - tagX) * 0.08;
+      const dy = (e.clientY - tagY) * 0.08;
+
+      tag.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+  });
+
+  orbit.addEventListener("mouseleave", () => {
+    orbit.querySelectorAll("span").forEach(tag => {
+      tag.style.transform = "translate(0, 0)";
+    });
+  });
+
+});
+
+const texts = ["Designer", "Developer", "IoT Enthusiast", "Dreamer", "Tech Lover", "Problem Solver", "Team Player","IoT Enthusiast", "AI Explorer"];
+const loopText = document.querySelector(".loop-text");
+
+let index = 0;
+function changeText() {
+  // Fade out
+  loopText.style.opacity = 0;
+
+  setTimeout(() => {
+    // Change text after fade out
+    loopText.textContent = texts[index];
+    // Fade in
+    loopText.style.opacity = 1;
+
+    // Move to next text
+    index = (index + 1) % texts.length;
+  }, 500); // matches the CSS transition duration
+}
+
+// Initial call
+changeText();
+setInterval(changeText, 2500);
+
+
