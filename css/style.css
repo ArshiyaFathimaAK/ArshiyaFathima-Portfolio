@@ -1063,6 +1063,11 @@ h1.coding-heading {
   }
 }
 
+@media (max-width: 500px) {
+  body {
+    background: red !important;
+  }
+}
 
 
 
