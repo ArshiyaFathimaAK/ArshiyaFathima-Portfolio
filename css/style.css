@@ -1062,9 +1062,139 @@ h1.coding-heading {
     content: "👆 Tap icons to open";
   }
 }
+/* Show hint ONLY on desktop */
+.desktop-hint {
+  font-size: 0.9rem;
+  opacity: 0.5;
+  margin-top: 10px;
+  text-align: center;
+}
 
+/* Hide desktop hint on mobile */
+@media (max-width: 768px) {
+  .desktop-hint {
+    display: none;
+  }
+}
 
+.mobile-hint {
+  display: none;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-top: 10px;
+}
 
+@media (max-width: 768px) {
+  .mobile-hint {
+    display: block;
+  }
+}
 
+/* ACHIEVEMENTS PAGE */
 
+.achievements-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 50px;
+}
+
+.achievements-container h2 {
+  margin: 50px 0 25px;
+}
+
+/* Achievement Grid */
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.achievement-card {
+  padding: 25px;
+  transition: transform 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(255,255,255,0.25);
+
+}
+
+.achievement-card .meta {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-bottom: 8px;
+}
+
+.achievement-card .text {
+  opacity: 0.85;
+}
+
+/* Volunteering */
+.volunteer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.volunteer-card {
+  padding: 25px;
+}
+
+.volunteer-card .meta {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+.volunteer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(255,255,255,0.25);
+
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .achievements-container {
+    padding: 30px 20px;
+  }
+}
+
+/* GRADIENT HEADINGS */
+.gradient-text {
+  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ACHIEVEMENT TAGS */
+
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+
+.tag {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* Color Variants */
+.tag.blue { color: #8ab4ff; }
+.tag.purple { color: #b48cff; }
+.tag.green { color: #7dffb3; }
+.tag.orange { color: #ffb86b; }
+.tag.teal { color: #5eead4; }
+.tag.pink { color: #f472b6; }
+
+#fact-text {
+  transition: opacity 0.3s ease-in-out;
+}
 
