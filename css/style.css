@@ -141,23 +141,46 @@ section {
   border-radius: 8px;
 }
 
+/* ===== PREMIUM CURSOR ===== */
+
 body {
   cursor: default;
 }
 
-.cursor {
-  width: 30px;
-  height: 30px;
+.cursor-dot {
+  width: 10px;
+  height: 10px;
+  background: white;
   border-radius: 50%;
-  background: rgba(138, 180, 255, 0.9);
   position: fixed;
-  top: 0;
-  left: 0;
   pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
+  z-index: 99999;
   mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
 }
+
+.cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(138,180,255,0.8);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, border 0.2s ease;
+  box-shadow: 0 0 20px rgba(138,180,255,0.5);
+}
+
+/* Hover grow effect */
+a:hover ~ .cursor-ring,
+.icon:hover ~ .cursor-ring,
+.tile:hover ~ .cursor-ring {
+  width: 60px;
+  height: 60px;
+  border-color: #b48cff;
+}
+
 
 
 @media (max-width: 768px) {
@@ -1196,5 +1219,227 @@ h1.coding-heading {
 
 #fact-text {
   transition: opacity 0.3s ease-in-out;
+}
+
+.availability {
+  position: fixed;
+  top: 22px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1c225c, #6a3fd9);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .4px;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(106, 63, 217, 0.45);
+  transition: all 0.35s ease;
+  z-index: 50;
+
+  /* slide-in animation */
+  transform: translateX(120%);
+  animation: slideIn 1.2s ease forwards;
+  animation-delay: 0.1s;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.availability:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 50px rgba(138, 88, 255, 0.8);
+}
+
+.availability .text {
+  position: relative;
+  background: linear-gradient(90deg, #c9b7ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.25s ease;
+}
+
+.availability:hover .text {
+  opacity: 0;
+}
+
+.availability::after {
+  content: "Hire Me";
+  position: absolute;
+  right: 82px;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.availability:hover::after {
+  opacity: 1;
+}
+
+.availability .arrow {
+  opacity: 0.7;
+  transition: transform 0.3s ease;
+}
+
+.availability:hover .arrow {
+  transform: translateX(6px);
+  opacity: 1;
+}
+
+.availability .pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #a98bff;
+  box-shadow: 0 0 12px #a98bff;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(169, 139, 255, 0.7); }
+  70% { box-shadow: 0 0 0 14px rgba(169, 139, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(169, 139, 255, 0); }
+}
+
+.contact-sub {
+  opacity: 0.7;
+  margin-bottom: 30px;
+}
+
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Make them fixed size so they line up nicely */
+.contact-card {
+  width: 140px;
+}
+
+
+.contact-card {
+  background: rgba(255, 251, 251, 0.08);
+  border-radius: 20px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: white;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card img {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 0 10px rgba(247, 247, 248, 0.717));
+}
+
+.contact-card span {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+/* Hover / Tap magic */
+.contact-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 50px rgba(120, 90, 255, 0.7);
+}
+
+/* Resume highlight */
+.contact-card.resume {
+  background: linear-gradient(135deg, rgba(90,60,255,0.25), rgba(150,80,255,0.25));
+  box-shadow: 0 0 40px rgba(150,80,255,0.6);
+}
+
+.contact-card.resume:hover {
+  box-shadow: 0 0 70px rgba(180,120,255,0.9);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    padding: 24px;
+  }
+}
+
+.resume-cta {
+  grid-column: span 2;
+  margin-top: 20px;
+  text-decoration: none;
+  text-align: center;
+  padding: 18px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+  color: white;
+
+  background: linear-gradient(135deg, #7a5cff, #c77dff);
+  box-shadow: 0 0 40px rgba(140, 90, 255, 0.7);
+  transition: 0.35s ease;
+}
+
+.resume-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 70px rgba(180,120,255,1);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .resume-cta {
+    grid-column: span 1;
+  }
+}
+
+.contact-card {
+  position: relative;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  padding: 24px 18px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  transition: 0.35s ease;
+  box-shadow: 0 0 0 rgba(140,90,255,0);
+}
+
+/* Soft neon glow behind each card */
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #7a5cff, #c77dff, #5de2ff);
+  opacity: 0.35;
+  filter: blur(18px);
+  z-index: -1;
+}
+
+/* Hover glow */
+.contact-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 40px rgba(160,120,255,0.9);
 }
 

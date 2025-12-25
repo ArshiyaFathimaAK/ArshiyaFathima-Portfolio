@@ -68,23 +68,19 @@ if (!isMobile) {
 /* =========================
    CUSTOM CURSOR (FIXED)
 ========================= */
-const cursor = document.querySelector(".cursor");
+const dot = document.querySelector(".cursor-dot");
+const ring = document.querySelector(".cursor-ring");
 
-if (cursor) {
-  document.addEventListener("mousemove", e => {
-    cursor.style.display = "block";
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-  });
+document.addEventListener("mousemove", e => {
+  if (!dot || !ring) return;
 
-  document.addEventListener("mouseleave", () => {
-    cursor.style.display = "none";
-  });
+  dot.style.left = e.clientX + "px";
+  dot.style.top = e.clientY + "px";
 
-  document.addEventListener("mouseenter", () => {
-    cursor.style.display = "block";
-  });
-}
+  ring.style.left = e.clientX + "px";
+  ring.style.top = e.clientY + "px";
+});
+
 
 /* =========================
    FULLSCREEN PREVIEW
@@ -186,6 +182,8 @@ function changeText() {
 // Initial call
 changeText();
 setInterval(changeText, 2500);
+
+
 
 
 
