@@ -71,15 +71,22 @@ if (!isMobile) {
 const dot = document.querySelector(".cursor-dot");
 const ring = document.querySelector(".cursor-ring");
 
-document.addEventListener("mousemove", e => {
-  if (!dot || !ring) return;
+// Detect REAL touch device
+const isTouch =
+  window.matchMedia("(hover: none)").matches &&
+  window.matchMedia("(pointer: coarse)").matches;
 
-  dot.style.left = e.clientX + "px";
-  dot.style.top = e.clientY + "px";
-
-  ring.style.left = e.clientX + "px";
-  ring.style.top = e.clientY + "px";
-});
+if (!isTouch && dot && ring) {
+  document.addEventListener("mousemove", e => {
+    dot.style.left = e.clientX + "px";
+    dot.style.top = e.clientY + "px";
+    ring.style.left = e.clientX + "px";
+    ring.style.top = e.clientY + "px";
+  });
+} else {
+  if (dot) dot.remove();
+  if (ring) ring.remove();
+}
 
 
 /* =========================

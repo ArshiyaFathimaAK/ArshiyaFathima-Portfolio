@@ -1443,3 +1443,10 @@ h1.coding-heading {
   box-shadow: 0 0 40px rgba(160,120,255,0.9);
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
