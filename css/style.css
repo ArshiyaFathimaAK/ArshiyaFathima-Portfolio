@@ -1450,3 +1450,102 @@ h1.coding-heading {
   }
 }
 
+.resume-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #1c225c, #6a3fd9);
+  color: #fff;
+  font-weight:normal;
+  border-radius: 999px;
+  
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.resume-btn:hover {
+  background: linear-gradient(135deg, #1c225c, #6a3fd9);
+  color:#a98bff;
+  transform: translateY(-2px);
+}
+
+
+.internship-mobile {
+  display: none; /* hidden by default */
+}
+
+@media (max-width: 768px) {
+  .availability {
+    top: auto;             /* ignore desktop top */
+    bottom: 20px;          /* bottom of screen */
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: 12px;
+    gap: 8px;
+    box-shadow: 0 0 20px rgba(106, 63, 217, 0.35);
+    background: linear-gradient(135deg, #1c225c, #6a3fd9);
+  }
+
+  /* Show the pulse on mobile */
+  .availability .pulse {
+    display: block;        /* make visible */
+    width: 8px;
+    height: 8px;
+  }
+
+  .availability .text {
+    font-size: 13px;
+  }
+
+  .availability .arrow {
+    font-size: 14px;
+  }
+
+  .availability::after {
+    display: none;         /* hide "Hire Me" text on mobile */
+  }
+}
+
+/* MOBILE SCROLL HINT */
+.scroll-hint {
+  position: fixed;
+  right: 14px;
+  bottom: 80px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  z-index: 500;
+  pointer-events: none;
+}
+
+.scroll-hint span {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.scroll-hint .arrow {
+  font-size: 1.4rem;
+  color: #8ab4ff;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); opacity: 0.3; }
+  50% { transform: translateY(10px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.3; }
+}
+
+/* Show only on real mobile */
+@media (hover: none) and (pointer: coarse) {
+  .scroll-hint {
+    display: flex;
+  }
+}
+

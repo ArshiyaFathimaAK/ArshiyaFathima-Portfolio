@@ -191,6 +191,18 @@ changeText();
 setInterval(changeText, 2500);
 
 
+const scrollHint = document.querySelector(".scroll-hint");
+
+if (scrollHint) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      scrollHint.style.opacity = "0";
+      setTimeout(() => scrollHint.remove(), 300);
+    }
+  });
+}
+
+
 
 
 
