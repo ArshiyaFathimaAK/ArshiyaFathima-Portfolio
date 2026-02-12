@@ -1554,3 +1554,137 @@ h1.coding-heading {
   }
 }
 
+/* ===============================
+   LIQUID BLOB WALL
+================================ */
+
+.blob-wall {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 28px;
+  padding: 40px;
+  z-index: 2;
+}
+
+.blob-tile {
+  position: relative;
+  border-radius: 60% 40% 55% 45% / 55% 50% 50% 45%;
+  background: linear-gradient(135deg, rgb(127, 91, 255), #b56cff, #7f5bff);
+  background-size: 300% 300%;
+  animation: blobMove 10s ease infinite;
+
+  box-shadow:
+    0 30px 80px rgba(120,90,255,0.45),
+    inset 0 0 40px rgba(255,255,255,0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color:white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.blob-tile::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  background: white;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.blob-tile:hover {
+  transform: scale(1.06);
+  box-shadow: 0 40px 120px rgba(160,120,255,0.6);
+}
+
+@keyframes blobMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .blob-wall {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .blob-tile {
+    font-size: 1.1rem;
+  }
+}
+/* wrapper */
+.about-image-wrapper{
+  position:relative;
+  display:inline-block;
+}
+
+/* profile image */
+.profile-img{
+  width:300px;
+  border-radius:12px;
+  transition:transform 0.3s ease;
+}
+
+.profile-img:hover{
+  transform:scale(1.03);
+}
+
+/* floating cards */
+.floating-card{
+  position:absolute;
+  padding:10px 16px;
+  border-radius:12px;
+  font-size:14px;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* positions */
+.card1{ bottom:-100px; left:0px; }
+.card2{ bottom:-150px; left:0px; }
+.card3{ bottom:-50px; left:0px; }
+
+/* floating motion */
+@keyframes float{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
+
+/*
+.highlight{
+  position:relative;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+.highlight:hover{
+  color:#8a2be2;
+}
+
+.highlight::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-2px;
+  width:0%;
+  height:2px;
+  background:#8a2be2;
+  transition:width 0.3s ease;
+}
+
+.highlight:hover::after{
+  width:100%;
+} */
